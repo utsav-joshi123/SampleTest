@@ -14,8 +14,39 @@ public class CheckoutPge extends BasePage {
     @FindBy(className = "inventory_item_name")
     private List<WebElement> itemNames;
 
+    @FindBy(id = "add-to-cart-sauce-labs-backpack")
+    private WebElement backpack;
+    @FindBy(id = "add-to-cart-sauce-labs-bolt-t-shirt")
+    private  WebElement tshirt;
+    @FindBy(id = "shopping_cart_container")
+    private WebElement cart;
+    @FindBy(id = "checkout")
+    private WebElement checkoutBtn;
+    @FindBy(id="first-name")
+    private WebElement firstName;
+    @FindBy(id="last-name")
+    private WebElement lastName;
+    @FindBy(id="postal-code")
+    private WebElement zipCode;
+    @FindBy(id = "continue")
+    private WebElement continueBtn;
+
     public boolean isOnCheckoutPage(){
         return driver.getCurrentUrl().contains("checkout-step-one.html");
+    }
+    public void pickItems(){
+        backpack.click();
+        tshirt.click();
+        cart.click();
+    }
+    public void checkout(){
+        checkoutBtn.click();
+    }
+    public void userInfo(String firstname, String lastname, String zip){
+        firstName.sendKeys(firstname);
+        lastName.sendKeys(lastname);
+        zipCode.sendKeys(zip);
+        continueBtn.click();
     }
 
     public List<String> getItemNames(){
